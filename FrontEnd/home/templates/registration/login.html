@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} - Login{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="card-body">
+            <h4 class="car-title text-center">Login</h4>
+
+            <form method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{next}}">
+
+                {{form|crispy}}
+                <button type="submit" class="btn btn-dark">Enter</button>
+                <a href="/accounts/register" class="btn btn-dark">Register</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

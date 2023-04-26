@@ -1,0 +1,71 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" class="html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="icon" href="{% static 'icon.png' %}">
+</head>
+<body style="overflow-x: hidden;">
+  <div class = "fixed-top mx-auto" style="display: flex; background-color: black; text-align: center; color: aliceblue; justify-content: center; padding: 10px;">
+    10% descount on first buy using coupom codes! Pay in up to 10 interest-free installments
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="margin-top: 40px;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbarToggler7"
+    aria-controls="myNavbarToggler7" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        {% if user.is_authenticated %}
+        <li class="nav-item active">
+          <a class="nav-link"> Welcome <i class="bi-person"></i> {{user.get_username}} </a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/accounts/logout"> Logout</a>
+        </li>
+        {% else %}
+        <li class="nav-item nav-login active">
+            <a class="nav-link" href="/accounts/login">Login</a>
+        </li>
+        {% endif %}
+      </ul>
+        <a class="navbar-brand mx-auto" href="/"><img src="https://i.imgur.com/QfUVnFt.png" style="width: 200px;" alt=""></a>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+        <form action="/search" method="get">
+          <input style="display: inline-block;" class="form-control" type="text" id="search-bar" name="query" placeholder="Search for Products">
+          <button style="display: inline-block;"><a href="/search"><i class="bi-search" style="margin-left: 10px; margin-right: 10px; font-size: 20px; color: black;"></i></a></button>
+        </form>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item active" style="text-align: right;">
+          <a class="nav-link" href="/cart"> <i class="bi-bag"></i> Cart</a>
+        </li>
+        {% endif %}
+        <li class="nav-item active">
+          <a class="nav-link" href="/api"> <i class="bi-wifi"></i> API Request</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div style="padding-top: 120px;"></div>
+  {% block content %}
+  {% endblock %}
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <footer class="text-center text-lg-start">
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      <p>© 2023 Copyright: Luana Júlia </p><a href="https://github.com/ferreiraluana">https://github.com/ferreiraluana</a>
+    </div>
+  </footer>
+</body>
+</html>

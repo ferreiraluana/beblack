@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} - Register{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="card-body">
+            {% if user.is_authenticated %}
+            <center><h1>You're logged in, need to logout to register a new User.</h1></center>
+            <a href="/accounts/logout" class="btn btn-dark btn-block">Logout</a>
+            {% else %}
+            <h4 class="car-title text-center">Register new User</h4>
+            <form method="POST" autocomplete="off">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{next}}">
+
+                {{form|crispy}}
+                <button type="submit" class="btn btn-dark btn-block">Register</button>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

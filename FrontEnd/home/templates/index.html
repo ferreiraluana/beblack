@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block title %} - Home{% endblock %}
+
+{% block content %}
+
+<!-- Conteúdo da Loja -->
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="display: flex;">
+    <ol class="carousel-indicators" style="filter: invert(100%);">
+        <li data-target="#carouselExampleIndicators" style="height: 15px; width: 20px;" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" style="height: 15px; width: 20px;" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" style="height: 15px; width: 20px;" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" style="background-color: aqua; display: flex;">
+        <div class="carousel-item active row">
+            <img class="w-50 column" style="padding-left: 15%;" src="https://i.imgur.com/8lZ7iHt.png">
+            <img class="column" style="width: 400px; padding-left: 10%;" src="https://i.imgur.com/dwIq4yQ.png">
+        </div>
+        <div class="carousel-item row">
+            <img class="w-40 column" style="padding-left: 15%;" src="https://i.imgur.com/3d4EYoc.png">
+            <img class="column" style="width: 500px; padding-left: 10%;" src="https://i.imgur.com/xWHysAW.png">
+        </div>
+        <div class="carousel-item row">
+            <img class="w-40 column" style="padding-left: 15%;" src="https://i.imgur.com/5XrjRDw.png">
+            <img class="column" style="width: 500px; padding-left: 10%;" src="https://i.imgur.com/aNwIJ44.png">
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" style="background-color: black; border-radius: 5px;" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" style="background-color: black; border-radius: 5px;" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<!-- <center><h1 style="display: inline-block;">Products For Sale!</h1></center> -->
+<!-- <center> -->
+<div class="row" style="padding-top: 2%;">
+    <div class="col-sm-6" style="padding-left: 10%;">
+        {% if products.count == 0 %}
+        <p style="margin-bottom: auto; margin-top: 15px;">Sorry we don't have products for this moment :(</p><br>
+        <p>Hint: Maybe you can request the API for new products</p>
+        {% endif %}
+        <div class="card-columns" style="margin-top: 15px; column-count: 4; column-gap: 100px; margin-right: 100px;">
+            {% for product in products %}
+            <div class="card border-0 mt-5 mb-5" style="padding-top: 50%; width: 150px; margin-right: 300px;">
+                <img class="card-img-top" style="width: 100px; height: 100px; border-radius: 10px;" src="{{product.imageUrl}}" alt="Card image cap">
+                <div class="card-body" style="width: 150px;">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <h6 class="card-subtitle text-muted">{{product.vendor}}</h6>
+                    <p id="product-description">
+                        R$ {{product.price}}
+                    </p>
+                    {% if user.is_authenticated %}
+                    <form action="/cart" method="get">
+                        <button type="submit" name="buyThis" value={{product.id}} class="btn btn-outline-primary" style="display: inline-block;">Buy</button>
+                    </form>
+                    {% else %}
+                    <a href="/accounts/login"><button class="btn btn-outline-primary" style="display: inline-block;">Buy</button></a><br>
+                    {% endif %}
+
+                    <i class="bi-star-fill"></i><i class="bi-star-fill"></i><i class="bi-star-fill"></i><i class="bi-star-fill"></i><i class="bi-star-fill"></i>
+                </div>
+                
+            </div>
+            <div class="mt-3"></div>
+            
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-sm-6" style="overflow: auto;">
+        <img src="https://i.imgur.com/BWnweor.png" style="width: auto; padding-bottom: 50%; border-radius: 20px;" alt="">
+        <img src="https://i.imgur.com/iHcbSTQ.png" style="width: auto; padding-left: 25%; border-radius: 20px;" alt="">
+    </div>
+</div>
+
+<!-- </center> -->
+
+{% endblock %}

@@ -1,0 +1,108 @@
+
+*::-webkit-scrollbar-thumb {
+    background: black;
+    border-radius: 2px;
+}
+
+.body {
+    overflow-x: hidden;
+}
+
+/* Navbar */ 
+
+.navbar {
+    border-bottom: 2px solid black;
+}
+
+.navbar-brand {
+    transition: 0.4s;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.navbar-nav.links {
+    /* padding-left: 10px; */
+    border-left: 2px solid black;
+    border-right: 0;
+}
+
+.navbar-brand:hover{transform: scale(1.1, 1.1);}
+
+.navbar a {
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    transform: scale(1.1, 1.1);
+}
+
+.nav-item a {
+    display: inline-block;
+    font-style: italic;
+}
+
+/* Button */
+
+.btn {
+    transition: 0.5s;
+}
+
+.btn:hover{transform: scale(1.125, 1.125);}
+
+/* Produtos */
+
+#product-description {
+    font-size: 14px;
+}
+
+.product-item {
+    border-radius: 10px;
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    transition: 0.5s;
+    scale: 1;
+}
+
+.product-item:hover {
+    transform: scale(1.2, 1.2);
+}
+
+.card-img-top {
+    transition: 0.5s;
+    scale: 1;
+}
+
+.card-img-top:hover {
+    transform: scale(1.2, 1.2);
+}
+
+/* Rodapé */
+
+footer {
+    background-color: aqua;
+}
+
+footer p {
+    color: white;
+    -webkit-text-stroke: 1px white;
+}
+
+footer a {
+    -webkit-text-stroke: 1px white;
+}
+
+/* footer {
+    margin-top: 50%;
+    margin-bottom: 0;
+    background-color: brown;
+    height: 100px;
+    border-top: 3px solid #202020;
+}
+
+footer p {
+    color: white;
+    text-align: center;
+    top: 50%;
+} */
